@@ -14,6 +14,17 @@ describe('json command', function () {
     });
   });
   
+  it('will read from standard input when no file is provided', function (done) {
+    var options = {
+      prefix: 'cat test/single-line.json | '
+    };
+    doTest(options, function (stdout, stderr) {
+      assert.equal(stdout, '{\n  "test": "single-line",\n  "a": 1\n}\n');
+      assert.equal(stderr, '');
+      done();
+    });
+  });
+  
   it('will display the help when the -h option is used', function (done) {
     var options = {
       args: ' -h'
@@ -72,7 +83,7 @@ describe('json command', function () {
 
 
 function doTest(options, callback) {
-  var command = 'node lib/json.js' + options.args || '';
+  var command = (options.prefix || '') + 'node lib/json.js' + (options.args || '');
   exec(command, {timeout: 1000}, function (error, stdout, stderr) {
     callback(stdout, stderr);
   });
