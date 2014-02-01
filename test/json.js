@@ -1,5 +1,6 @@
 var assert = require('assert');
 var exec = require('child_process').exec;
+var packageData = require('../package.json');
 
 
 describe('json command', function () {
@@ -81,6 +82,28 @@ describe('json command', function () {
     });
   });
   
+  it('outputs the version if the -v option is provided', function (done) {
+    var options = {
+      args: ' -v'
+    };
+    doTest(options, function (stdout, stderr) {
+      assert.equal(stdout, packageData.name + ' version ' + packageData.version + '\n');
+      assert.equal(stderr, '');
+      done();
+    });
+  });
+  
+  it('aliases -v with --version', function (done) {
+    var options = {
+      args: ' --version'
+    };
+    doTest(options, function (stdout, stderr) {
+      assert.equal(stdout, packageData.name + ' version ' + packageData.version + '\n');
+      assert.equal(stderr, '');
+      done();
+    });
+  });
+  
   it('fails with an error if there is a JSON parse error', function (done) {
     var options = {
       args: ' test/not-json.txt'
@@ -105,7 +128,8 @@ function validateHelpMessage(output) {
   var expected = [
     /Pretty-prints JSON\.\n\nUsage: json \[options\] \[file\ \.\.\.]\n\nOptions:\n/,
     /-h,\s+--help\s+Prints this help\/usage message\./,
-    /-i,\s+--indent\s+Sets how many spaces to indent\.\s+\[default: 2\]/
+    /-i,\s+--indent\s+Sets how many spaces to indent\.\s+\[default: 2\]/,
+    /-v,\s+--version\s+Displays the version of this tool\./
   ];
   for (var index = 0; index < expected.length; index++) {
   	var pattern = expected[index];
