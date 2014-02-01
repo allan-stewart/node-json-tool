@@ -7,3 +7,8 @@ Useful when working with JSON files, e.g. if consuming or developing JSON RESTfu
 There are surely other (and probably better!) tools like this out there in the node.js
 ecosystem.
 I'm creating this one for myself; partly to meet a need but more to experiment and learn.
+
+
+## License
+
+Created under the MIT license. See the LICENSE file for full details.
