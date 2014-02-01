@@ -1,0 +1,31 @@
+{
+  "name": "json-tool",
+  "version": "0.1.0",
+  "description": "A simple command-line tool for pretty-printing / reformatting JSON files.",
+  "main": "lib/json.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "optimist": "~0.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "",
+  "keywords": [
+    "json",
+    "pretty",
+    "print",
+    "reformat"
+  ],
+  "author": "Allan Stewart",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "private": true,
+  "preferGlobal": true,
+  "bin": {
+    "json": "lib/json.js"
+  }
+}
