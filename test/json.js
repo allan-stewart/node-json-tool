@@ -90,7 +90,7 @@ function doTest(options, callback) {
 }
 
 function validateHelpMessage(output) {
-  var expected = [/Pretty-prints JSON\.\n\nUsage: json \[options\] <file>\n\nOptions:\n/,
+  var expected = [/Pretty-prints JSON\.\n\nUsage: json \[options\] \[file\]\n\nOptions:\n/,
     /-h,\s+--help\s+Prints this help\/usage message\./,
     /-i,\s+--indent\s+Sets how many spaces to indent\.\s+\[default: 2\]/
   ];
