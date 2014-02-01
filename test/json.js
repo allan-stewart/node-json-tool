@@ -25,6 +25,18 @@ describe('json command', function () {
     });
   });
   
+  it('can read multiple files', function (done) {
+    var options = {
+      args: ' test/single-line.json test/multi-line.json'
+    };
+    doTest(options, function (stdout, stderr) {
+      assert.equal(stdout, '{\n  "test": "single-line",\n  "a": 1\n}\n' +
+                           '{\n  "test": "multi-line",\n  "a": 1\n}\n');
+      assert.equal(stderr, '');
+      done();
+    });
+  });
+  
   it('will display the help when the -h option is used', function (done) {
     var options = {
       args: ' -h'
@@ -90,7 +102,8 @@ function doTest(options, callback) {
 }
 
 function validateHelpMessage(output) {
-  var expected = [/Pretty-prints JSON\.\n\nUsage: json \[options\] \[file\]\n\nOptions:\n/,
+  var expected = [
+    /Pretty-prints JSON\.\n\nUsage: json \[options\] \[file\ \.\.\.]\n\nOptions:\n/,
     /-h,\s+--help\s+Prints this help\/usage message\./,
     /-i,\s+--indent\s+Sets how many spaces to indent\.\s+\[default: 2\]/
   ];
